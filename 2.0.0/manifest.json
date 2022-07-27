@@ -1,0 +1,43 @@
+﻿{
+    "manifest_version": 3,
+    "name": "Запросы в ЭСРН",
+    "version": "2.0.0",
+    "description": "Автоматическая отправка запросов для МСП в ЭСРН.",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://172.19.142.237/admin/edit*"
+            ],
+            "js": [
+                "utils/async-storage.js",
+                "main.js"
+            ]
+        },
+        {
+            "matches": [
+                "http://172.19.142.237/utils/webrequestfromorg.sx"
+            ],
+            "js": [
+                "utils/date.js",
+                "utils/async-storage.js",
+                "queries/zags.js",
+                "queries/ktzn.js",
+                "queries/mvd.js",
+                "queries/pfr.js",
+                "queries/rosreestr.js",
+                "queries/fns.js",
+                "queries/fss.js",
+                "query.js"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
